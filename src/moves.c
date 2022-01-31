@@ -107,6 +107,12 @@ int HC_Move_legal(HC_Board *board, HC_Move *move)
 	return legal;
 }
 
+int HC_Move_equal(HC_Move *this, HC_Move *that)
+{
+	return (   HC_Coordinates_equal(this->coords_from, that->coords_from)
+			&& HC_Coordinates_equal(this->coords_to,   that->coords_to));
+}
+
 /* more optimized for internal use */
 int HC_Move_legal_opt(HC_Board *board, HC_Move *move, HC_Board *test_board, DA_hc_coords *enemy_vision)
 {

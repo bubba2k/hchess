@@ -1,12 +1,12 @@
 #include <common.h>
 #include <game.h>
 #include <board.h>
+#include <util.h>
+#include <vision.h>
 
 HC_Game *HC_Game_create()
 {
 	HC_Game *game = malloc(sizeof(HC_Game));
-
-	game->da_move_strings = DA_charptr_create(100);
 
 	game->played_moves = DA_hc_moves_create(50);
 	game->legal_moves = DA_hc_moves_create(50);
@@ -33,12 +33,6 @@ void HC_Game_reset(HC_Game *game)
 	DA_hc_moves_clear(game->played_moves);
 	DA_hc_moves_clear(game->legal_moves);
 
-	for(size_t i = 0; i < game->da_move_strings->size; i++)
-	{
-		free(game->da_move_strings->data[i]);
-	}
-
-	DA_charptr_clear(game->da_move_strings);
 }
 
 void HC_Game_destroy(HC_Game *game)
@@ -46,11 +40,6 @@ void HC_Game_destroy(HC_Game *game)
 	DA_hc_moves_destroy(game->played_moves);
 	DA_hc_moves_destroy(game->legal_moves);
 
-	for(size_t i = 0; i < game->da_move_strings->size; i++)
-	{
-		free(game->da_move_strings->data[i]);
-	}
-	DA_charptr_destroy(game->da_move_strings);
 
 	HC_Board_destroy(game->board);
 	free(game);
@@ -58,8 +47,17 @@ void HC_Game_destroy(HC_Game *game)
 
 int HC_Game_play_move(HC_Game *game, HC_Move *move)
 {
-	char *move_str = HC_Move_get_verbose_str(game->board, move);
-	DA_charptr_push_back(game->da_move_strings, &move_str);
+	/* Check if the move is actually one of the legal moves. */
+	int move_is_legal = 0;
+	int n_legal_moves = 0;
+	HC_Move *legal_moves = HC_Game_get_legal_moves(game, &n_legal_moves);
+	for(int i = 0; i < n_legal_moves; i++)
+	{
+		if(HC_Move_equal(move, legal_moves + i))
+			move_is_legal = 1;
+	}
+	if(!move_is_legal)
+		return 0;
 
 	if(move->takes && !move->en_passant)
 	{
@@ -229,8 +227,16 @@ HC_GameState HC_Game_get_state(HC_Game *game)
 HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *size)
 {
 	if(game->move_played_since_move_gen)
+	{
+		DA_hc_moves_clear(game->legal_moves);
 		HC_player_find_moves(game->board, game->color_to_move, game->legal_moves);
+	}
 
 	*size = game->legal_moves->size;
 	return game->legal_moves->data;
+}
+
+HC_Color HC_Game_get_color_to_move(HC_Game *game)
+{
+	return game->color_to_move;
 }

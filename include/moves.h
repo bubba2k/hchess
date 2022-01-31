@@ -26,6 +26,7 @@ void HC_Piece_append_moves_unsafe(HC_Board *board, HC_Piece *piece, DA_hc_moves 
 int HC_Board_play_move(HC_Board *board, HC_Move *move);
 	
 char *HC_Move_get_verbose_str(HC_Board *board, HC_Move *move);
+int HC_Move_equal(HC_Move *this, HC_Move *that);
 
 #ifdef __cplusplus
 }

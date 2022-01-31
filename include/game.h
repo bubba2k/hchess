@@ -8,14 +8,12 @@ extern "C" {
 #include "board.h"
 #include "util.h"
 #include "moves.h"
-#include "vision.h"
 
 typedef struct HC_Game
 {
 	HC_Board *board;
 	DA_hc_moves *legal_moves;
 	DA_hc_moves *played_moves;
-	DA_charptr *da_move_strings;
 	
 	int move_played_since_move_gen;
 	unsigned num_moves_played;
@@ -30,12 +28,32 @@ typedef enum {	HC_BLACK_WINS = 0, HC_WHITE_WINS = 1,
 			    HC_PLAYING = 5
 			 } HC_GameState;
 
-HC_GameState HC_Game_get_state(HC_Game *game);
+/* Create a game. */
 HC_Game *HC_Game_create();
+
+/* Destroy a game. */
 void HC_Game_destroy(HC_Game *game);
+
+/* Get the state of a game. This should be checked once every time
+ * a move has been played. */
+HC_GameState HC_Game_get_state(HC_Game *game);
+
+/* Reset the game to starting position. */
 void HC_Game_reset(HC_Game *game);
+
+/* Play the given @move. Returns 1 on succes, or 0 if the 
+ * move is corrupt/not one of the legal moves. */
 int HC_Game_play_move(HC_Game *game, HC_Move *move);
+
+/* Get an array of the legal moves. The number of legal moves
+ * is put into @size. */
 HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *size);
+
+/* Check whose colors turn it is. */
+HC_Color HC_Game_get_color_to_move(HC_Game *game);
+
+/* Get a list of all pieces on the board. */
+HC_Piece *HC_Game_get_pieces(HC_Game *game, int *n);
 
 #ifdef __cplusplus
 }

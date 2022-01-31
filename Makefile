@@ -9,8 +9,8 @@ objdir:
 
 static: objdir
 	for f in $(SRCFILES); do gcc $(CFLAGS) -c $$f -o "obj/$$(basename $$f).o"; done
-	ar rcs cchess.a $(OBJFILES)
+	ar rcs hchess.a $(OBJFILES)
 
 dynamic: objdir
 	for f in $(SRCFILES); do gcc $(CFLAGS) -fPIC -c $$f -o "obj/$$(basename $$f).o"; done
-	gcc -shared $(OBJFILES) -o libcchess.so
+	gcc -shared $(OBJFILES) -o libhchess.so
