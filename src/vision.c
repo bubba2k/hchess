@@ -1,8 +1,8 @@
-#include "util.h"
-#include "board.h"
-#include "piece.h"
-#include "common.h"
-#include "vision.h"
+#include <util.h>
+#include <board.h>
+#include <piece.h>
+#include <common.h>
+#include <vision.h>
 
 void HC_Piece_KING_get_vision(HC_Piece *piece, HC_Board *board, DA_hc_coords *da_coords);
 void HC_Piece_QUEEN_get_vision(HC_Piece *piece, HC_Board *board, DA_hc_coords *da_coords);

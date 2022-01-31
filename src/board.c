@@ -2,10 +2,10 @@
 #include <string.h>
 #include <assert.h>
 
-#include "board.h"
-#include "common.h"
-#include "util.h"
-#include "piece.h"
+#include <board.h>
+#include <common.h>
+#include <util.h>
+#include <piece.h>
 
 HC_Board * HC_Board_create()
 {

@@ -1,9 +1,9 @@
-#include "board.h"
-#include "piece.h"
-#include "common.h"
-#include "moves.h"
-#include "vision.h"
-#include "dynamic_array_gen.h"
+#include <board.h>
+#include <piece.h>
+#include <common.h>
+#include <moves.h>
+#include <vision.h>
+#include <dynamic_array_gen.h>
 
 DYNAMIC_ARRAY_GEN_IMPL(HC_Move, hc_moves)
 

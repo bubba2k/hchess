@@ -1,6 +1,6 @@
-#include "common.h"
-#include "game.h"
-#include "board.h"
+#include <common.h>
+#include <game.h>
+#include <board.h>
 
 HC_Game *HC_Game_create()
 {

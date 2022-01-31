@@ -2,14 +2,14 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "common.h"
-#include "board.h"
-#include "util.h"
-#include "piece.h"
-#include "vision.h"
-#include "moves.h"
+#include <common.h>
+#include <board.h>
+#include <util.h>
+#include <piece.h>
+#include <vision.h>
+#include <moves.h>
 
-#include "dynamic_array_gen.h"
+#include <dynamic_array_gen.h>
 
 DYNAMIC_ARRAY_GEN_IMPL(char *, charptr)
 DYNAMIC_ARRAY_GEN_IMPL(HC_Coordinates, hc_coords)

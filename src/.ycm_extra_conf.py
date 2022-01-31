@@ -7,7 +7,11 @@ flags = [
   '-Wno-long-long',
   '-Wno-variadic-macros',
   '-ferror-limit=10000',
-  '-std=c99'
+  '-std=c99',
+  '-I',
+  '../include',
+  '-I',
+  'include'
   ]
 
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', ]

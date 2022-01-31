@@ -1,8 +1,8 @@
-#include "piece.h"
-#include "board.h"
-#include "common.h"
-#include "util.h"
-#include "dynamic_array_gen.h"
+#include <piece.h>
+#include <board.h>
+#include <common.h>
+#include <util.h>
+#include <dynamic_array_gen.h>
 
 DYNAMIC_ARRAY_GEN_IMPL(HC_Piece, hc_pieces)
 
