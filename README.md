@@ -58,7 +58,7 @@ int main()
 }
 ```
 
-### API
+### API Documentation
 #### Functions
 
 All functions are in the HC namespace and act on a HC_Game object. 
