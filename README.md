@@ -138,7 +138,7 @@ Creating and using your own move struct with this function will most likely resu
 ##### HC_Move
  Member        |  Type       	|Purpose       
  :------------ | :--------   	| :-------------
- coords_from   | HC_Coordinates	| The coordinates of moving piece.
+ coords_from   | HC_Coordinates	| The coordinates of the moving piece.
  coords_to     | HC_Coordinates | The coordinates of the square the piece is moving to.
  
 ##### HC_Piece
@@ -148,10 +148,4 @@ Creating and using your own move struct with this function will most likely resu
  color			| HC_Color			| The color of the piece. Either `HC_WHITE` or `HC_BLACK`.
  coordinates   	| HC_Coordinates	| The coordinates of the piece.
 				
-Note: `type` is one of 
-* `HC_KING`
-* `HC_QUEEN`
-* `HC_ROOK` 
-* `HC_BISHOP`
-* `HC_KNIGHT`
-* `HC_PAWN`
+Note: `type` is one of `HC_KING`, `HC_QUEEN`, `HC_ROOK`, `H C_BISHOP`, `HC_KNIGHT` or `HC_PAWN`.
