@@ -47,13 +47,13 @@ int HC_Game_play_move(HC_Game *game, HC_Move *move);
 
 /* Get an array of the legal moves. The number of legal moves
  * is put into @size. */
-HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *size);
+const HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *size);
 
 /* Check whose colors turn it is. */
 HC_Color HC_Game_get_color_to_move(HC_Game *game);
 
 /* Get a list of all pieces on the board. */
-HC_Piece *HC_Game_get_pieces(HC_Game *game, int *n);
+const HC_Piece *HC_Game_get_pieces(HC_Game *game, int *n);
 
 #ifdef __cplusplus
 }

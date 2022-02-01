@@ -50,7 +50,7 @@ int HC_Game_play_move(HC_Game *game, HC_Move *move)
 	/* Check if the move is actually one of the legal moves. */
 	int move_is_legal = 0;
 	int n_legal_moves = 0;
-	HC_Move *legal_moves = HC_Game_get_legal_moves(game, &n_legal_moves);
+	const HC_Move *legal_moves = HC_Game_get_legal_moves(game, &n_legal_moves);
 	for(int i = 0; i < n_legal_moves; i++)
 	{
 		if(HC_Move_equal(move, legal_moves + i))
@@ -224,7 +224,7 @@ HC_GameState HC_Game_get_state(HC_Game *game)
 	return state;
 }
 
-HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *size)
+const HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *size)
 {
 	if(game->move_played_since_move_gen)
 	{
@@ -239,4 +239,10 @@ HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *size)
 HC_Color HC_Game_get_color_to_move(HC_Game *game)
 {
 	return game->color_to_move;
+}
+
+const HC_Piece *HC_Game_get_pieces(HC_Game *game, int *n)
+{
+	*n = game->board->da_pieces->size;
+	return game->board->da_pieces->data;
 }

@@ -107,7 +107,7 @@ int HC_Move_legal(HC_Board *board, HC_Move *move)
 	return legal;
 }
 
-int HC_Move_equal(HC_Move *this, HC_Move *that)
+int HC_Move_equal(const HC_Move *this, const HC_Move *that)
 {
 	return (   HC_Coordinates_equal(this->coords_from, that->coords_from)
 			&& HC_Coordinates_equal(this->coords_to,   that->coords_to));
