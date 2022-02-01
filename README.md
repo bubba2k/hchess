@@ -148,4 +148,4 @@ Creating and using your own move struct with this function will most likely resu
  color			| HC_Color			| The color of the piece. Either `HC_WHITE` or `HC_BLACK`.
  coordinates   	| HC_Coordinates	| The coordinates of the piece.
 				
-Note: `type` is one of `HC_KING`, `HC_QUEEN`, `HC_ROOK`, `H C_BISHOP`, `HC_KNIGHT` or `HC_PAWN`.
+Note: `type` is one of `HC_KING`, `HC_QUEEN`, `HC_ROOK`, `HC_BISHOP`, `HC_KNIGHT` or `HC_PAWN`.
