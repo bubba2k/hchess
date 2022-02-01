@@ -59,6 +59,7 @@ int main()
 ```
 
 ### API
+#### Functions
 
 All functions are in the HC namespace and act on a HC_Game object. 
 
@@ -84,7 +85,6 @@ Reset a game to the default starting position.
 ```c
 HC_GameState HC_Game_get_state(HC_Game *game)
 ```
-
 Checks whether game has ended and returns a value of enum HC_GameState.
 Possible return values are:
 * `HC_PLAYING` - The game is on-going.
@@ -96,4 +96,62 @@ Possible return values are:
 
 
 ```c
-HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *n)
+const HC_Move *HC_Game_get_legal_moves(HC_Game *game, int *n)
+``` 
+Returns a pointer to the first element of an array of the legal moves in the current position.
+The number of legal moves in the array is put into @n.
+Note: Do *not* try to mutate the array.
+
+
+```c
+HC_Color HC_Game_get_color_to_move(HC_Game *game)
+```
+Returns either `HC_WHITE` or `HC_BLACK`.
+
+```c
+const HC_Piece *HC_Game_get_pieces(HC_Game *game, int *n)
+```
+Returns a pointer to the first element of an array of the pieces on the board.
+The number of pieces in the array is put into @n.
+Note: Do *not* try to mutate the array.
+
+
+```c
+int HC_Game_play_move(HC_Game *game, HC_Move *move)
+```
+Play given move.
+Returns 1 on success, or 0 if the passed move is not one of the legal moves in the current position.
+Note: *Always* use one of the moves in the game's move list acquired with `HC_Game_get_legal_moves()`.
+Creating and using your own move struct with this function will most likely result in undefined behaviour.
+
+
+#### Structs
+
+##### HC_Coordinates
+ Member        |  Type       	|Purpose       
+ :------------ | :--------   	| :-------------
+ rank	       | unsigned int	| The rank.
+ file           | unsigned int	 | The file.
+ 
+ Note: Both rank and file range from 1 to 8. For the file, 1 equals file A and 8 equals file H etc.
+ 
+##### HC_Move
+ Member        |  Type       	|Purpose       
+ :------------ | :--------   	| :-------------
+ coords_from   | HC_Coordinates	| The coordinates of moving piece.
+ coords_to     | HC_Coordinates | The coordinates of the square the piece is moving to.
+ 
+##### HC_Piece
+ Member        	|  Type       		|Purpose       
+ :------------ 	| :--------   		| :-------------
+ type			| HC_PieceType		| The type of the piece.
+ color			| HC_Color			| The color of the piece. Either `HC_WHITE` or `HC_BLACK`.
+ coordinates   	| HC_Coordinates	| The coordinates of the piece.
+				
+Note: `type` is one of 
+* `HC_KING`
+* `HC_QUEEN`
+* `HC_ROOK` 
+* `HC_BISHOP`
+* `HC_KNIGHT`
+* `HC_PAWN`
