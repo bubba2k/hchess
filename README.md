@@ -1,9 +1,11 @@
 # hchess
 
 hchess is a small library written in C99 implementing the chess game.
-All rules except for threefold/fivefold and promotion (currently only promotion to queen is possible) are implemented.
-The library is designed to allow you to get a game of chess up and running as quick as possible. Note that hchess does
-not implement any IO.
+All rules except for threefold/fivefold repetition and promotion (currently only promotion to queen is possible) are fully implemented.
+Note that this is *not* a chess engine, and even though hchess does have the capabilities to generate all legal moves in a position,
+it is most likely not performant enough to build an AI of any reasonable strength on top of it.
+This is simply an API to get a game of chess between two human players up and running as quick as possible.
+Also note that hchess does not implement any IO.
 
 ### Building
 
